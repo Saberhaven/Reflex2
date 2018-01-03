@@ -1,0 +1,11 @@
+
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Quick Links</h5>
+    <div class="card-text">
+      <div *ngFor="let link of links" style="padding:1px;">
+        <a href="{{link.url}}" target="{{link.target}}"><i class="glyphicon glyphicon-triangle-right"></i> {{link.title}}</a>
+      </div>
+    </div>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<div class="news">
+		<div class="card " 			
+		*ngFor="let stuff of news">
+		<div class="card-header"  [innerHTML]="stuff.newstitle"></div>
+	<div class="card-body">
+
+		<p class="card-title text-muted">Posted to {{stuff.role}} at {{stuff.createstamp | amDateFormat: 'ddd, MMMM Do YYYY, h:mm:ss a'}}</p>
+		<div class="card-text" >
+			<span [innerHTML]="stuff.newsbody"></span>
+		</div>
+
+	</div>
+
+</div>
+</div>
+
+
+  
+
