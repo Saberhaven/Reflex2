@@ -1,17 +1,16 @@
 <div class="news">
-		<div class="card " 			
-		*ngFor="let stuff of news">
-		<div class="card-header"  [innerHTML]="stuff.newstitle"></div>
-	<div class="card-body">
-
-		<p class="card-title text-muted">Posted to {{stuff.role}} at {{stuff.createstamp | amDateFormat: 'ddd, MMMM Do YYYY, h:mm:ss a'}}</p>
-		<div class="card-text" >
-			<span [innerHTML]="stuff.newsbody"></span>
+	<div class="card"
+		  *ngFor="let stuff of news" style="box-shadow: 0px 3px 21px -8px rgba(0,0,0,1); margin:0px 5px 15px">
+		<div class="card-header bg-dark text-white">
+			<div [innerHTML]="stuff.newstitle"></div>
 		</div>
-
+		<div class="card-body">
+			<p class="text-muted">Posted to {{stuff.role}} at {{stuff.createstamp | amDateFormat: 'ddd, MMMM Do YYYY, h:mm:ss a'}}</p>
+			<div class="card-text" >
+				<span [innerHTML]="stuff.newsbody"></span>
+			</div>
+		</div>
 	</div>
-
-</div>
 </div>
 
 

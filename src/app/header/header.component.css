@@ -1,6 +1,8 @@
 .header-bg {
 	height:100px;
+	background-position: 15%;
 	background-image:url('../../assets/reflexClear.png'),
 	linear-gradient(to bottom,  #e1e1e1 0%,#f6f6f6 45%,#d3d3d3 45%,#f6f6f6 100%);
 	background-repeat: no-repeat;
+	
 }
