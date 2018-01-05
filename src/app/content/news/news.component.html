@@ -4,7 +4,7 @@
 		<div class="card-header bg-dark text-white">
 			<div [innerHTML]="stuff.newstitle"></div>
 		</div>
-		<div class="card-body">
+		<div class="card-body" [ngbCollapse]="isCollapsed">
 			<p class="text-muted">Posted to {{stuff.role}} at {{stuff.createstamp | amDateFormat: 'ddd, MMMM Do YYYY, h:mm:ss a'}}</p>
 			<div class="card-text" >
 				<span [innerHTML]="stuff.newsbody"></span>

@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Observable';
 })
 
 export class NewsComponent implements OnInit {
+  public isCollapsed = true;
   public news;
   constructor(private newsService: NewsService){
 
