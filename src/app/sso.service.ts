@@ -8,7 +8,7 @@ const httpOptions = {
 
 @Injectable()
 export class SsoService {
-  apiURL = "./assets/sso.api.php"
+  apiURL = "./api/sso.api.php"
   constructor(private http: HttpClient) { }
 
   getSso() {

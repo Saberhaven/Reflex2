@@ -11,8 +11,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeaderComponent implements OnInit {
   private user;
+  public name;
   constructor(private ssoService: SsoService) { }
-
+  
   ngOnInit() {
     this.getSso();
 
@@ -22,9 +23,10 @@ export class HeaderComponent implements OnInit {
     this.ssoService.getSso().subscribe(
       data => {this.user = data},
       err => console.error(err),
-      () => console.log(this.user)
+      () => console.log(this.user),
+      
     );
-    
+   
   }
 
 }
