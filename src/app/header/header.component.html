@@ -1,9 +1,21 @@
-<div class="container " style="margin-top:51px;">
+<div  class="container sticky-top">
 
-    <div class="row header-bg">
-        <div class="text-right col-sm-12"style="margin-top:32px;">
-            <b>Welcome {{user?.name}}</b>
+    <div class="row ">
+        <div class="col-sm-1">
+            <div class="menu">
+                <cuppa-slidemenu [menulist]="menuItemsArray" (open)="onMenuOpen()" (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)" [config]="menuConfig"></cuppa-slidemenu>
+            </div>
         </div>
+               
+                <div class="col-sm-11">
+                    <div class="header-bg ">
+                            <app-search-box></app-search-box>
+                    </div>
+                    
+                    <!-- <b>Welcome {{user?.fname}}</b> -->
+                </div>
+        
+           
        
     </div>
 

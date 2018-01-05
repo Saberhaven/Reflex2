@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from './../environments/environment';
-import {Routes, RouterModule} from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
+import { SlideMenuModule } from 'cuppa-ng2-slidemenu/cuppa-ng2-slidemenu';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SearchBoxComponent } from './nav/search-box/search-box.component';
+import { SearchBoxComponent } from './header/search-box/search-box.component';
 import { NavComponent } from './nav/nav.component';
 import { ContentComponent } from './content/content.component';
 import { MarqueeComponent } from './marquee/marquee.component';
@@ -41,6 +43,7 @@ export const ROUTES: Routes = [
   ],
   imports: [
     RouterModule.forRoot(ROUTES),
+    SlideMenuModule,
     BrowserModule,
     NgbModule.forRoot(),
     MomentModule,

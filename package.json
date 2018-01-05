@@ -9,7 +9,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
-    
   },
   "private": true,
   "dependencies": {
@@ -29,6 +28,7 @@
     "datatables.net-bs4": "^1.10.16",
     "font-awesome": "^4.7.0",
     "moment": "^2.20.1",
+    "ng2-sticky-kit": "^5.1.0",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

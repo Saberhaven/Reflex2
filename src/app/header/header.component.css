@@ -1,8 +1,17 @@
 .header-bg {
 	height:100px;
-	background-position: 30%;
-	background-image:url('../../assets/reflexClear.png'),
-	linear-gradient(to bottom,  #e1e1e1 0%,#f6f6f6 45%,#d3d3d3 45%,#f6f6f6 100%);
+	z-index:99;
+	background-image:url('../../assets/reflexClear.png');
+	
 	background-repeat: no-repeat;
 	
 }
+
+.container {
+background:linear-gradient(to bottom,  #e1e1e1 0%,#f6f6f6 45%,#d3d3d3 45%,#f6f6f6 100%);
+}
+
+.menu {
+	margin-top:20px;
+}
+

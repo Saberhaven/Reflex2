@@ -18,6 +18,39 @@ export class HeaderComponent implements OnInit {
     this.getSso();
 
   }
+ 
+  private menuItemsArray: any[] = [ 
+    {"title":"Electricity","link":"#"},
+    {"title":"Mobile Bill","link":"#"},
+    {"title":"Home and Kitchen","link":"#",
+    "subItems":[
+                {"title":"Furniture","link":"#"},
+                {"title":"Cookware","link":"#"},
+               ]
+    },
+    {"title":"Car Accessories","link":"#",
+     "subItems":[
+                  {"title":"Tyres and Alloys","link":"#"},
+                  {"title":"Comfort and Safety","link":"#"},
+                 ]
+    },
+];
+ private menuConfig: any = {
+    "animation": "emphatic",
+    "offset": {
+      "top": 100
+    },
+    closeOnCLick: false
+  };
+public onMenuClose(){
+ console.log("menu closed");
+}
+public onMenuOpen(){
+ console.log("menu Opened");
+}
+private onItemSelect(item:any){
+ console.log(item);
+}
 
   getSso() {
     this.ssoService.getSso().subscribe(
