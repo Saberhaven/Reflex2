@@ -1,5 +1,6 @@
 <?php
-print_r(strtolower(htmlentities($_SERVER['PHP_AUTH_USER']));
+session_start();
+// print_r(strtolower(htmlentities($_SERVER['PHP_AUTH_USER']));
 
 // function prt_auth_fail($user) {
 //     if ($user = '') {
@@ -10,27 +11,35 @@ print_r(strtolower(htmlentities($_SERVER['PHP_AUTH_USER']));
 // }
 
 // if(isset($_SERVER['PHP_AUTH_USER'])) {
-//     include "dbcon.php";
-//     $userQuery = mysqli_query($conn, "SELECT * FROM users WHERE userlnum='" . htmlentities($_SERVER['PHP_AUTH_USER']) . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
-    
-//     $userRow = mysqli_fetch_assoc($userQuery);
+	include "dbcon_dev.php";
+	$stmt = $db->prepare("SELECT * FROM users WHERE userlnum =:user");
+	$stmt->execute(array('user'=>'l7d23b'));
+	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	// $userQuery = mysqli_query($conn, "SELECT * FROM users WHERE userlnum='" . htmlentities($_SERVER['PHP_AUTH_USER']) . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
+	
+	// $userRow = mysqli_fetch_assoc($userQuery);
 
-//     $deptQuery = mysqli_query($conn, "SELECT deptid FROM department WHERE deptname='" . $userRow['department'] . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
-//     $deptRow = mysqli_fetch_assoc($deptQuery);
+	// $deptQuery = mysqli_query($conn, "SELECT deptid FROM department WHERE deptname='" . $userRow['department'] . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
+	// $deptRow = mysqli_fetch_assoc($deptQuery);
 
-//     mysqli_query($conn, "UPDATE users SET lastaccess='" . date("y-m-d H:i:s"). "' WHERE userlnum='" . $userRow['userlnum'] . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
+	// mysqli_query($conn, "UPDATE users SET lastaccess='" . date("y-m-d H:i:s"). "' WHERE userlnum='" . $userRow['userlnum'] . "'", MYSQLI_STORE_RESULT) or die(mysqli_error($conn));
 
-//     include "dbclose.php";
-//     if(mysqli_num_rows($userQuery) == 1) {
-//         $_SESSION['uid'] = $userRow['userid'];
-//         $_SESSION['lnum'] = $userRow['userlnum'];
-//         $_SESSION['seclvl'] = $userRow['seclvl'];
-//         $_SESSION['userdeptname'] = $userRow['department'];
-//         $_SESSION['userdeptid'] = $deptRow['deptid'];
-//         $firstName = explode(" ", $userRow['username']);
-//         $_SESSION['fname'] = $firstName[0];
-//         $_SESSION['email'] = $userRow['useremail'];
-// 		$_SESSION['fullname'] = $userRow['username'];
+	//  include "dbclose.php";
+	foreach($results as $r) {
+		$_SESSION['uid'] = $r['userid'];
+		$_SESSION['lnum'] = $r['userlnum'];
+		$_SESSION['seclvl'] = $r['seclvl'];
+		// $_SESSION['userdeptname'] = $r['department'];
+		// $_SESSION['userdeptid'] = $r['deptid'];
+		$firstName = explode(" ", $r['username']);
+		$_SESSION['fname'] = $firstName[0];
+		$_SESSION['email'] = $r['useremail'];
+	 	$_SESSION['fullname'] = $r['username'];
+	}
+
+	echo json_encode($_SESSION);
+   //  if(mysqli_num_rows($userQuery) == 1) {
+       
 //         if (isset($userRow['initials'])) {
 //             $_SESSION['ini'] = $userRow['initials'];
 //         }
