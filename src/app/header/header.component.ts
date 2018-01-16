@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { SsoService } from '../sso.service'
 import { Observable } from 'rxjs/Observable';
 
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
  
   private menuItemsArray: any[] = [ 
-    {"title":"Electricity","link":"#"},
+    {"title":"Authoring","link":"/author"},
     {"title":"Mobile Bill","link":"#"},
     {"title":"Home and Kitchen","link":"#",
     "subItems":[

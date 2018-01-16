@@ -1,10 +1,18 @@
 <div class="news">
 	<div class="card"
-		  *ngFor="let stuff of news" style="box-shadow: 0px 3px 21px -8px rgba(0,0,0,1); margin:0px 5px 15px">
-		<div class="card-header bg-dark text-white">
+		  *ngFor="let stuff of news;" style="box-shadow: 0px 3px 21px -8px rgba(0,0,0,1); margin:0px 5px 15px">
+		<div class="card-header bg-dark text-white" (click)="stuff.colToggle = !stuff.colToggle">
+			<div style="margin-right:15px;" class="float-left">
+				<span class="fa fa-minus" aria-hidden="true"
+					*ngIf="!stuff.colToggle">
+				</span>
+				<span class="fa fa-plus" aria-hidden="true"
+					*ngIf="stuff.colToggle">
+				</span>
+			</div>
 			<div [innerHTML]="stuff.newstitle"></div>
 		</div>
-		<div class="card-body" [ngbCollapse]="isCollapsed">
+		<div class="card-body" [ngbCollapse]="stuff.colToggle">
 			<p class="text-muted">Posted to {{stuff.role}} at {{stuff.createstamp | amDateFormat: 'ddd, MMMM Do YYYY, h:mm:ss a'}}</p>
 			<div class="card-text" >
 				<span [innerHTML]="stuff.newsbody"></span>
@@ -12,7 +20,3 @@
 		</div>
 	</div>
 </div>
-
-
-  
-
