@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { URLSearchParams } from '@angular/http';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -8,10 +9,10 @@ const httpOptions = {
 
 @Injectable()
 export class AuthorService {
-  apiURL = "./api/author.api.php"
+  apiURL = "./api/article.api.php"
   constructor(private http: HttpClient) { }
 
-  getNews() {
+  getArticle(id) {
     return this.http.get(this.apiURL, {
     });
   }
