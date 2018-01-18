@@ -6,7 +6,6 @@ import { environment } from './../environments/environment';
 import { Routes, RouterModule } from "@angular/router";
 import { SlideMenuModule } from 'cuppa-ng2-slidemenu/cuppa-ng2-slidemenu';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { FormsModule } from '@angular/forms';
 import { TinymceModule } from 'angular2-tinymce';
 
 
@@ -23,6 +22,8 @@ import { MomentModule } from 'angular2-moment';
 import { ArticleComponent } from './content/article/article.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthorComponent } from './content/author/author.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 export const ROUTES: Routes = [
@@ -52,6 +53,8 @@ export const ROUTES: Routes = [
   imports: [
     RouterModule.forRoot(ROUTES),
     SlideMenuModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     NgbModule.forRoot(),
     MomentModule,

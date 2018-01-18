@@ -30,7 +30,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.getArticle();
-
+    // this.articleService.cast.subscribe(data=> this.article = data);
   }
 
   getArticle() {
@@ -45,7 +45,7 @@ export class ArticleComponent implements OnInit {
   
 
   editArticle(artid) {
-    this.editService.editArticle(artid);
+    this.router.navigate(['/author/'+artid]);
   }
 
 }

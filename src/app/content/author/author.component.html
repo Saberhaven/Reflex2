@@ -1,8 +1,7 @@
 <div class="container" style="padding-bottom:30px;">
-
-    <app-tinymce [(ngModel)]='_article.artbody' ></app-tinymce>
-
-    {{_article.val}}
+  <app-author  [elementId]="'my-editor'"
+  (onEditorContentChange)="keyupHandler($event)"
+  ></app-author>
 </div>
 
 

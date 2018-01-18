@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SsoService } from '../sso.service'
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';  
+import { Router } from '@angular/router';  
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,9 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent implements OnInit {
   private user;
   public name;
-  constructor(private ssoService: SsoService) { }
+  constructor(private ssoService: SsoService,
+              private route: ActivatedRoute, 
+              private router: Router) { }
   
   ngOnInit() {
     this.getSso();
@@ -20,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
  
   private menuItemsArray: any[] = [ 
-    {"title":"Authoring","link":"/author"},
+    {"title":"Article","link":"/article/425"},
     {"title":"Mobile Bill","link":"#"},
     {"title":"Home and Kitchen","link":"#",
     "subItems":[
@@ -38,7 +42,9 @@ export class HeaderComponent implements OnInit {
  private menuConfig: any = {
     "animation": "emphatic",
     "offset": {
+
       "top": 100
+      
     },
     closeOnCLick: false
   };
@@ -49,7 +55,8 @@ public onMenuOpen(){
  console.log("menu Opened");
 }
 private onItemSelect(item:any){
- console.log(item);
+ console.log(item.link);
+ this.router.navigate([item.link]);
 }
 
   getSso() {
