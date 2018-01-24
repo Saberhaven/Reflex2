@@ -20,8 +20,6 @@ export class ArticleService {
   
   constructor(private httpClient: HttpClient) { }
 
-  
-
   getArticle(id: number, action: string) {
     const params = {'id':id, 'action':action};
     this.httpClient.post(this.apiURL, params)

@@ -6,7 +6,7 @@ import { environment } from './../environments/environment';
 import { Routes, RouterModule } from "@angular/router";
 import { SlideMenuModule } from 'cuppa-ng2-slidemenu/cuppa-ng2-slidemenu';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { TinymceModule } from 'angular2-tinymce';
+// import { TinymceModule } from 'angular2-tinymce';
 
 
 import { AppComponent } from './app.component';
@@ -24,13 +24,21 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthorComponent } from './content/author/author.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { EditArticleComponent } from './content/editor/article/article.component';
+import { EditNewsComponent } from './content/editor/news/news.component';
+
+import { CreateComponent } from './content/author/create/create.component';
+
+
+
 
 
 export const ROUTES: Routes = [
 
     {path:'', component: ContentComponent},
     {path:'article/:id', component: ArticleComponent},
-    {path:'author/:id', component: AuthorComponent},
+    {path:'author/', component: AuthorComponent},
+    {path:'editor/article/:id', component: EditArticleComponent},
 
 
 ];
@@ -48,7 +56,10 @@ export const ROUTES: Routes = [
     StaleDatesComponent,
     ArticleComponent,
     FooterComponent,
-    AuthorComponent
+    AuthorComponent,
+    EditArticleComponent,
+    EditNewsComponent,
+    CreateComponent,
   ],
   imports: [
     RouterModule.forRoot(ROUTES),
@@ -61,14 +72,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     CKEditorModule,
     FormsModule,
-    TinymceModule.withConfig({
-      theme: 'modern',
-      content_css: 'https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-      skin_url: '../../assets/skins/lightgray',
-      plugins: ['print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help fontawesome noneditable'],
-      toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat fontawesome',
-      extended_valid_elements: 'span[*]'
-    })
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

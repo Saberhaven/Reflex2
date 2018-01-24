@@ -15,31 +15,30 @@ import { HostListener } from '@angular/core/src/metadata/directives';
 })
 export class ArticleComponent implements OnInit {
   public article;
-  public artId;
+  private artId;
 
   constructor(private route: ActivatedRoute, 
               private router: Router,
               private articleService: ArticleService,
               private editService: EditService
             ) 
-    { 
-      this.route.params.subscribe(res => this.artId = res);
-      console.log(this.artId);
-
+  {
+    this.route.params.subscribe(res => this.artId = res);
+    
   }
 
   ngOnInit() {
     this.getArticle();
-    // this.articleService.cast.subscribe(data=> this.article = data);
   }
 
   getArticle() {
-    this.articleService.getArticle(this.artId.id, 'pull').subscribe(
-      data => this.article = data,
-      err => console.error(err),
-      () => console.log(this.article)
-    );
-
+     this.articleService.getArticle(this.artId.id, 'pull');
+     this.articleService.getLoadedArticle().subscribe(
+      (res => {
+        this.article = res;
+        console.log(res);
+      })
+    )
   }
 
   

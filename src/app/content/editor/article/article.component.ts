@@ -1,4 +1,5 @@
-import { ArticleService } from '../article/article.service';
+import { ArticleService } from '../../../services/article.service';
+import { CategoryService } from '../../../services/category.service';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';  
 import { Router } from '@angular/router';  
@@ -17,16 +18,14 @@ import {
   Output
 } from '@angular/core';
 
-
 @Component({
-  selector: 'app-author',
-  templateUrl: './author.component.html',
-  styleUrls: ['./author.component.css'],
-  providers: [ArticleService]
+  selector: 'app-edit-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css'],
+  providers: [ArticleService, CategoryService]
 })
-
-
-export class AuthorComponent implements OnInit {
+export class EditArticleComponent implements OnInit {
+  
   articleEditForm : FormGroup
   articleData = new BehaviorSubject<any>([]);
   public ckeditorContent;
@@ -35,30 +34,48 @@ export class AuthorComponent implements OnInit {
 
   public constructor(
     private articleService: ArticleService,
+    private categoryService: CategoryService,
     private route: ActivatedRoute, 
     private router: Router,
     private fb: FormBuilder
   ) {
     this.route.params.subscribe(res => this.artId = res);
- 
   }
  
-
-
   ngOnInit() {
     this.getArticle();
+    this.getCategories();
     this.articleEditForm = this.fb.group({
       arttitle: ['', Validators.required],
-      summary: ['', Validators.required]
+      summary: ['', Validators.required],
+      categories: [[], Validators.required]
+    
+    
     });
-
   }
 
   onSubmit(value:string){
     console.log(this.articleEditForm);
   }
 
-  
+  setTopic(event) {
+    console.log(event);
+  }
+
+  getCategories() {
+    this.categoryService.getCategories('getCategories');
+    this.categoryService.getLoadedCategories().subscribe(
+     (res => {
+      console.log(res)
+      this.articleEditForm.patchValue({
+        categories: res
+      })
+
+      console.log(this.articleEditForm);
+     })
+   )
+
+  }
 
   getArticle() {
     this.articleService.getArticle(this.artId.id, 'pull');
@@ -76,6 +93,9 @@ export class AuthorComponent implements OnInit {
      })
    )
  }
+
+
+}
 
 
 }
