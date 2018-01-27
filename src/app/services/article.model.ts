@@ -16,4 +16,11 @@ export class Article {
 	chainid			:number;
 	rolename			:string;
 	linkdoctext		:string;
+	cat1				:string;
+	cat2				:string;
+	catid1			:number;
+	catid2			:number;
+	fullcatid		:number;
+	deptid			:number;
+	catrole			:string;
 }

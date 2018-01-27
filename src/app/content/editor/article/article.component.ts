@@ -17,6 +17,7 @@ import {
   Input,
   Output
 } from '@angular/core';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-edit-article',
@@ -31,6 +32,18 @@ export class EditArticleComponent implements OnInit {
   public ckeditorContent;
   public article;
   public artId;
+  public cat;
+  public artData = {
+    title: '',
+    summary: '',
+    category: '',
+    topic: '',
+    createstamp: '',
+    modstamp: '',
+    topics: [],
+    categories: []
+
+  };
 
   public constructor(
     private articleService: ArticleService,
@@ -41,53 +54,65 @@ export class EditArticleComponent implements OnInit {
   ) {
     this.route.params.subscribe(res => this.artId = res);
   }
+  
  
   ngOnInit() {
     this.getArticle();
     this.getCategories();
-    this.articleEditForm = this.fb.group({
-      arttitle: ['', Validators.required],
-      summary: ['', Validators.required],
-      categories: [[], Validators.required]
-    
-    
-    });
   }
 
   onSubmit(value:string){
     console.log(this.articleEditForm);
   }
 
-  setTopic(event) {
-    console.log(event);
+  catSelect(cat) {
+    
+    this.cat = cat;
+    this.getTopics()
+    console.log(this.cat);
   }
+
 
   getCategories() {
     this.categoryService.getCategories('getCategories');
     this.categoryService.getLoadedCategories().subscribe(
      (res => {
-      console.log(res)
-      this.articleEditForm.patchValue({
-        categories: res
-      })
-
-      console.log(this.articleEditForm);
+       this.artData.categories = _.uniqBy(res, 'cat1');
      })
    )
 
+  }
+
+  getTopics() {
+    this.categoryService.getTopics('getTopics', this.cat);
+    this.categoryService.getLoadedTopics().subscribe(
+     (res => {
+       this.artData.topics = _.uniqBy(res, 'cat2');
+       console.log(res);
+     })
+   )
   }
 
   getArticle() {
     this.articleService.getArticle(this.artId.id, 'pull');
     this.articleService.getLoadedArticle().subscribe(
      (res => {
-       this.article = res;
-       this.ckeditorContent = res.artbody;
-      this.articleEditForm.patchValue({
-        arttitle:res.arttitle,
-        summary:res.summary,
-        artbody:res.artbody
-      })
+      this.ckeditorContent = res.artbody;
+      this.artData.title = res.arttitle;
+      this.artData.summary = res.summary;
+      this.artData.category = res.cat1;
+      this.artData.topic = res.cat2;
+      this.artData.createstamp = res.createstamp;
+      this.artData.modstamp = res.modstamp;
+      this.cat = res.cat1
+      this.getTopics();
+      console.log(res);
+
+      // this.articleEditForm.patchValue({
+      //   arttitle:res.arttitle,
+      //   summary:res.summary,
+      //   artbody:res.artbody
+      // })
       //  console.log(res);
       
      })
@@ -98,4 +123,4 @@ export class EditArticleComponent implements OnInit {
 }
 
 
-}
+

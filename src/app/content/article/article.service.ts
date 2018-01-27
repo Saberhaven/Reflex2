@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ActivatedRoute } from "@angular/router";
 import { Subject } from 'rxjs/Subject';
-import { Article } from './article.model'
+import { Article } from '../../services/article.model'
 import 'rxjs/add/operator/map';
 
 

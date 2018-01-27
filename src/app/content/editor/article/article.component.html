@@ -1,26 +1,32 @@
 <div class="container" style="padding-bottom:30px;">
-    <form [formGroup]="articleEditForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="card">
+        <div class="card-body">
+    <form (ngSubmit)="onSubmit(myForm.value)">
       <div class="form-group">
-        <label>Article Title</label>
-        <input class="form-control" type="text" formControlName='arttitle'>
+        <label><b>Article Title</b></label>
+        <input class="form-control" type="text" [(ngModel)]="artData.title" name="title">
       </div>
       <div class="form-group">
-        <label>Article Summary</label>
-        <input class="form-control" type="text" formControlName='summary'>
+        <label><b>Article Summary</b></label>
+        <input class="form-control" type="text" [(ngModel)]="artData.summary" name="summary">
       </div>
-
-      <!-- <div class="form-group">
-          <label>Category</label>
-          <input class="form-control" type="text" formControlName='summary'>
-        </div> -->
-
-        <div class="form-group">
-          <label>Topic</label>
-          <select class="form-control" type="text" formControlName='categories'>
-              <option *ngFor="let ct of categories" [ngValue]="ct.catid2">
-                  {{ct.cat2}}
-              </option>
-          </select>
+        <div class="row">
+          <div class="form-group col-sm-6">
+              <label><b>Category</b></label>
+              <select [(ngModel)]="artData.category" name="category" class="form-control" (ngModelChange)="catSelect($event)">
+                  <option  *ngFor="let cat of artData.categories" [ngValue]="cat.cat1">
+                      {{cat.cat1}}
+                  </option>
+              </select>
+            </div>
+            <div class="form-group col-sm-6" >
+              <label><b>Topic</b></label>
+              <select class="form-control" name="topic" [(ngModel)]="artData.topic">
+                  <option  *ngFor="let cat of artData.topics" [ngValue]="cat.cat2">
+                      {{cat.cat2}}
+                  </option>
+              </select>
+              </div>
         </div>
     </form>
   
@@ -32,6 +38,28 @@
   </ckeditor>
   
   </div>
-  
+  </div>
+
+
+
+  <div class="card">
+      <div class="card-header bg-dark text-white">
+        <div class="row ">
+          <div class="col-sm-8">
+            <h3>{{artData.title}}</h3>
+            <div class="card-subtitle mb-2 ">{{artData.summary}}</div>
+            <div class="card-subtitle mb-2 text-muted">{{artData.category}} / {{artData.topic}}</div>
+            
+           
+          </div>
+          <div class="col-sm-4 ">
+            <h3 class="text-right">{{artData.artid}}</h3>
+            <div class="text-right card-subtitle text-muted">Created: {{artData.createstamp | amDateFormat: 'MMMM DD, YYYY H:m:s'}}</div>
+            <div class="text-right card-subtitle text-muted">Updated: {{artData.modstamp | amDateFormat: 'MMMM DD, YYYY H:m:s'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" [innerHTML]="ckeditorContent"></div>
+</div>
   
   
